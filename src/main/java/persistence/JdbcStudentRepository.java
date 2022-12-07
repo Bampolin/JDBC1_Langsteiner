@@ -12,8 +12,8 @@ public record JdbcStudentRepository(Connection connection) implements StudentRep
 
     @Override
     public void deleteAll() throws SQLException {
-
-
+        var statement = connection.createStatement();
+        statement.executeUpdate("delete from students");
     }
 
     @Override
