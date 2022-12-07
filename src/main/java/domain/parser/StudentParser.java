@@ -4,8 +4,11 @@ package domain.parser;
 import domain.Student;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentParser {
 
@@ -15,6 +18,8 @@ public class StudentParser {
      * @param path the path of the csv-file
      */
     public Collection<Student> readFromCsv(Path path) throws IOException {
-        return null;
+        List<Student> result = new LinkedList<>();
+        Files.lines(path)
+                .filter()
     }
 }

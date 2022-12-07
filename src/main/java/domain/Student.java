@@ -54,6 +54,35 @@ public final class Student {
         return lastName;
     }
 
+    public static boolean isValid(String str) {
+        String [] line = str.split(",");
+        if (line.length != 5)
+            return false;
+
+        Gender g;
+
+        if (line[2].equals("m")) {
+            g = Gender.MALE;
+        } else if (line[2].equals("w")) {
+            g = Gender.FEMALE;
+        } else if (line[2].equals("d")) {
+            g = Gender.DIVERSE;
+        } else {
+            return false;
+        }
+
+
+
+
+        try {
+            new Student(line[0], line[1], )
+        }
+
+
+
+
+    }
+
     @Override
     public String toString() {
         return "Student{" +
