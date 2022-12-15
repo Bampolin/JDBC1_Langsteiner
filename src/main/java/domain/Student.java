@@ -72,16 +72,34 @@ public final class Student {
         }
 
 
-
-
         try {
-            new Student(line[0], line[1], )
+            new Student(line[0], line[1], g, Integer.parseInt(line[3]), line[4]);
+        } catch (Exception e) {
+            return false;
         }
 
-
-
-
+        return true;
     }
+
+
+    public static Student of(String csv) {
+        if (isValid(csv)) {
+            String [] line = csv.split(",");
+            Gender g;
+
+            if (line[2].equals("m")) {
+                g = Gender.MALE;
+            } else if (line[2].equals("w")) {
+                g = Gender.FEMALE;
+            } else {
+                g = Gender.DIVERSE;
+            }
+
+            return new Student(line[0], line[1], g, Integer.parseInt(line[3]), line[4]);
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {

@@ -19,7 +19,8 @@ public class StudentParser {
      */
     public Collection<Student> readFromCsv(Path path) throws IOException {
         List<Student> result = new LinkedList<>();
-        Files.lines(path)
-                .filter()
+        //Files.lines(path)
+        //        .filter();
+        return null;
     }
 }
