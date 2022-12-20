@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Objects;
-
 public final class Student {
     private Integer id;
     private final String lastName;
@@ -55,6 +53,10 @@ public final class Student {
     }
 
     public static boolean isValid(String str) {
+        if (!str.endsWith("F")) {
+            return false;
+        }
+
         String [] line = str.split(",");
         if (line.length != 5)
             return false;
@@ -80,7 +82,6 @@ public final class Student {
 
         return true;
     }
-
 
     public static Student of(String csv) {
         if (isValid(csv)) {

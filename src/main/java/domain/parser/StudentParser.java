@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class StudentParser {
-
     /**
      * Converts all lines of a csv-formatted file to the students. Invalid lines are skipped
      *
@@ -19,8 +18,9 @@ public class StudentParser {
      */
     public Collection<Student> readFromCsv(Path path) throws IOException {
         List<Student> result = new LinkedList<>();
-        //Files.lines(path)
-        //        .filter();
-        return null;
+        return Files.lines(path)
+                .filter(Student::isValid)
+                .map(Student::of)
+                .toList();
     }
 }
