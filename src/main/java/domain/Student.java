@@ -1,6 +1,9 @@
 package domain;
 
-public final class Student {
+import java.util.Collection;
+import java.util.Objects;
+
+public final class Student implements Comparable<Student> {
     private Integer id;
     private final String lastName;
     private final String firstName;
@@ -52,6 +55,10 @@ public final class Student {
         return lastName;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
     public static boolean isValid(String str) {
         if (!str.endsWith("F")) {
             return false;
@@ -86,15 +93,7 @@ public final class Student {
     public static Student of(String csv) {
         if (isValid(csv)) {
             String [] line = csv.split(",");
-            Gender g;
-
-            if (line[2].equals("m")) {
-                g = Gender.MALE;
-            } else if (line[2].equals("w")) {
-                g = Gender.FEMALE;
-            } else {
-                g = Gender.DIVERSE;
-            }
+            Gender g = Gender.valueOf(line[2]);
 
             return new Student(line[0], line[1], g, Integer.parseInt(line[3]), line[4]);
         }
@@ -112,5 +111,47 @@ public final class Student {
                 ", number=" + number +
                 ", schoolClass='" + schoolClass + '\'' +
                 '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getSchoolClass() {
+        return schoolClass;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        int result = firstName.compareTo(o.firstName);
+        if (result == 0) {
+            result = lastName.compareTo(o.lastName);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return number == student.number  && Objects.equals(lastName, student.lastName) && Objects.equals(firstName, student.firstName) && gender == student.gender && Objects.equals(schoolClass, student.schoolClass);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastName, firstName, gender, number, schoolClass);
     }
 }
